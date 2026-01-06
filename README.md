@@ -67,7 +67,7 @@ npm run dev
 ## Project Structure
 
 ```
-interview_int/
+folder_name/
 ├── app/
 │   ├── api/
 │   │   └── generate-form/
