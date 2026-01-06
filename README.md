@@ -25,7 +25,7 @@ A powerful web application that generates dynamic forms from natural language de
 1. Clone the repository and navigate to the project:
 
 ```bash
-cd interview_int
+cd folder_name
 ```
 
 2. Install dependencies:
