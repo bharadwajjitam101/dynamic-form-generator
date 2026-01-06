@@ -1,36 +1,127 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dynamic Form Generator
+
+A powerful web application that generates dynamic forms from natural language descriptions using Google Gemini AI.
+
+## Features
+
+- **Natural Language Input**: Describe your form in plain English
+- **AI-Powered Generation**: Uses Google Gemini to understand and parse form requirements
+- **Dynamic Rendering**: Forms are generated and rendered in real-time
+- **Smart Field Types**: Automatically selects appropriate input types (text, email, tel, select, radio, checkbox, etc.)
+- **Validation**: Built-in form validation with real-time error feedback
+- **Meta-tag Mapping**: Each field has semantic metadata for data processing
+- **Modern UI**: Clean, responsive design with smooth animations
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+ 
+- npm or yarn
+- Google Gemini API key
+
+### Installation
+
+1. Clone the repository and navigate to the project:
+
+```bash
+cd interview_int
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Set up your environment variables:
+
+Create a `.env.local` file in the root directory:
+
+```bash
+GEMINI_API_KEY=your_actual_gemini_api_key_here
+```
+
+You can get your Gemini API key from: https://makersuite.google.com/app/apikey
+
+4. Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Usage
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Describe Your Form**: Type a natural language description of the form you need in the input box. For example:
+   - "I need a registration form for a doctors' conference with Name, Medical License Number, and Dietary Restrictions"
+   - "Create a job application form with Name, Email, Phone, Resume summary, and Years of Experience"
 
-## Learn More
+2. **Generate**: Click the "Generate Form" button to create your form.
 
-To learn more about Next.js, take a look at the following resources:
+3. **Fill & Submit**: Fill out the generated form and submit it.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. **View Results**: See your submitted data with meta-tag mappings in a structured format.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project Structure
 
-## Deploy on Vercel
+```
+interview_int/
+├── app/
+│   ├── api/
+│   │   └── generate-form/
+│   │       └── route.ts     # Gemini API proxy endpoint
+│   ├── globals.css          # Global styles
+│   ├── layout.tsx           # Root layout
+│   └── page.tsx             # Main page
+├── components/
+│   ├── DynamicForm.tsx      # Form renderer
+│   ├── FormGenerator.tsx    # Input interface
+│   ├── SchemaViewer.tsx     # JSON schema viewer
+│   └── SubmissionResult.tsx # Results display
+├── lib/
+│   └── types.ts             # TypeScript interfaces
+└── .env.local               # Environment variables (create this)
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Tech Stack
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **AI**: Google Gemini API
+- **Icons**: Lucide React
+
+## Example Form Schema
+
+The AI generates JSON schemas like this:
+
+```json
+{
+  "title": "Conference Registration",
+  "description": "Registration form for attendees",
+  "fields": [
+    {
+      "name": "full_name",
+      "label": "Full Name",
+      "type": "text",
+      "placeholder": "Enter your name",
+      "required": true,
+      "meta_tag": "participant_name"
+    },
+    {
+      "name": "dietary_restrictions",
+      "label": "Dietary Restrictions",
+      "type": "select",
+      "options": ["None", "Vegetarian", "Vegan", "Halal"],
+      "required": false,
+      "meta_tag": "dietary_preference"
+    }
+  ]
+}
+```
+
+## License
+
+MIT
